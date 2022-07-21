@@ -1,23 +1,24 @@
 package com.mx.ControlClientes.web;
 
-import com.mx.ControlClientes.dao.IPersonaDao;
 import com.mx.ControlClientes.domain.Persona;
-import lombok.var;
+import com.mx.ControlClientes.service.IPersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class ControladorInicio {
 
     @Autowired
-    private IPersonaDao iPersonaDao;
+    private IPersonaService iPersonaService;
 
     @GetMapping("/")
     public String inicio(Model model) {
 
-        var personas = iPersonaDao.findAll();
+        List<Persona> personas = iPersonaService.listarPersonas();
 
         model.addAttribute("personas", personas);
 
